@@ -1,0 +1,148 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Scripts/KinematicBody2D.gd" type="Script" id=1]
+[ext_resource path="res://Assets/anmPlayer/tomateSemFundo1.png" type="Texture" id=2]
+[ext_resource path="res://Assets/anmPlayer/tomateSemFundo2.png" type="Texture" id=3]
+[ext_resource path="res://Assets/anmPlayer/tomateSemFundo3.png" type="Texture" id=4]
+[ext_resource path="res://Assets/anmPlayer/tomateSemFundo4.png" type="Texture" id=5]
+[ext_resource path="res://Scripts/EnemySpawn.gd" type="Script" id=6]
+[ext_resource path="res://Assets/UI/RedBar.png" type="Texture" id=7]
+[ext_resource path="res://Assets/UI/GrayBar.png" type="Texture" id=8]
+[ext_resource path="res://Assets/anmInimigo/inimigoanim1.png" type="Texture" id=9]
+[ext_resource path="res://Assets/UI/chaobg.png" type="Texture" id=10]
+[ext_resource path="res://Assets/UI/cadeiraD-removebg-preview.png" type="Texture" id=11]
+[ext_resource path="res://Assets/UI/cadeiraE-removebg-preview.png" type="Texture" id=12]
+[ext_resource path="res://Assets/UI/Mesa.png" type="Texture" id=13]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "Walk",
+"speed": 5.0
+} ]
+
+[sub_resource type="CircleShape2D" id=2]
+
+[node name="Main" type="Node2D"]
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+position = Vector2( 259, 112 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Tomate" type="AnimatedSprite" parent="KinematicBody2D"]
+scale = Vector2( 0.176975, 0.206407 )
+frames = SubResource( 1 )
+animation = "Idle"
+playing = true
+flip_h = true
+
+[node name="TempoInimigo" type="Timer" parent="."]
+autostart = true
+script = ExtResource( 6 )
+
+[node name="BarraCinza" type="Sprite" parent="."]
+position = Vector2( 10, 10 )
+texture = ExtResource( 8 )
+centered = false
+
+[node name="Vida" type="Sprite" parent="."]
+position = Vector2( 10, 10 )
+texture = ExtResource( 7 )
+centered = false
+
+[node name="Pontos" type="Sprite" parent="."]
+position = Vector2( 983, 578 )
+rotation = -1.5708
+scale = Vector2( 1e-05, 1 )
+texture = ExtResource( 7 )
+centered = false
+
+[node name="Inimigoanim1" type="Sprite" parent="."]
+self_modulate = Color( 0.447059, 0.305882, 0.305882, 1 )
+light_mask = 9
+position = Vector2( 996, 320 )
+scale = Vector2( 0.130384, 0.156972 )
+texture = ExtResource( 9 )
+
+[node name="ConjuntodeMesa2" type="KinematicBody2D" parent="."]
+position = Vector2( 226, 514 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Mesa" type="Sprite" parent="ConjuntodeMesa2"]
+position = Vector2( -33.75, -26.25 )
+scale = Vector2( 0.7, 0.766667 )
+z_index = 5
+z_as_relative = false
+texture = ExtResource( 13 )
+
+[node name="CadeiraE-removebg-preview" type="Sprite" parent="ConjuntodeMesa2/Mesa"]
+position = Vector2( 70.7865, -18.8571 )
+scale = Vector2( 0.440898, 0.394286 )
+z_as_relative = false
+texture = ExtResource( 12 )
+
+[node name="CadeiraD-removebg-preview" type="Sprite" parent="ConjuntodeMesa2/Mesa"]
+position = Vector2( -36.4045, -32.5715 )
+scale = Vector2( 0.388314, 0.294857 )
+z_as_relative = false
+texture = ExtResource( 11 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ConjuntodeMesa2"]
+position = Vector2( -35, -42 )
+scale = Vector2( 6.64, 5.725 )
+z_index = 10
+z_as_relative = false
+shape = SubResource( 2 )
+
+[node name="ConjuntodeMesa" type="KinematicBody2D" parent="."]
+position = Vector2( 750, 224 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Mesa" type="Sprite" parent="ConjuntodeMesa"]
+position = Vector2( -33.75, -26.25 )
+scale = Vector2( 0.7, 0.766667 )
+z_index = 5
+z_as_relative = false
+texture = ExtResource( 13 )
+
+[node name="CadeiraE-removebg-preview" type="Sprite" parent="ConjuntodeMesa/Mesa"]
+position = Vector2( 70.7865, -18.8571 )
+scale = Vector2( 0.440898, 0.394286 )
+z_as_relative = false
+texture = ExtResource( 12 )
+
+[node name="CadeiraD-removebg-preview" type="Sprite" parent="ConjuntodeMesa/Mesa"]
+position = Vector2( -36.4045, -32.5715 )
+scale = Vector2( 0.388314, 0.294857 )
+z_as_relative = false
+texture = ExtResource( 11 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ConjuntodeMesa"]
+position = Vector2( -35, -42 )
+scale = Vector2( 6.64, 5.725 )
+z_index = 10
+z_as_relative = false
+shape = SubResource( 2 )
+
+[node name="Chaobg" type="Sprite" parent="."]
+position = Vector2( -108, -360 )
+scale = Vector2( 1.80313, 1.92188 )
+z_index = -1
+z_as_relative = false
+texture = ExtResource( 10 )
+centered = false
+
+[connection signal="timeout" from="TempoInimigo" to="TempoInimigo" method="_on_TempoInimigo_timeout"]

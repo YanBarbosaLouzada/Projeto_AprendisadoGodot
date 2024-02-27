@@ -1,0 +1,48 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Assets/anmInimigo/inimigoanim6.png" type="Texture" id=1]
+[ext_resource path="res://Assets/anmInimigo/inimigoanim3.png" type="Texture" id=2]
+[ext_resource path="res://Assets/anmInimigo/inimigoanim10.png" type="Texture" id=3]
+[ext_resource path="res://Assets/anmInimigo/inimigoanim11.png" type="Texture" id=4]
+[ext_resource path="res://Assets/anmInimigo/inimigoanim8.png" type="Texture" id=5]
+[ext_resource path="res://Assets/anmInimigo/inimigoanim4.png" type="Texture" id=6]
+[ext_resource path="res://Assets/anmInimigo/inimigoanim7.png" type="Texture" id=7]
+[ext_resource path="res://Assets/anmInimigo/inimigoanim1.png" type="Texture" id=8]
+[ext_resource path="res://Assets/anmInimigo/inimigoanim2.png" type="Texture" id=9]
+[ext_resource path="res://Assets/anmInimigo/inimigoanim5.png" type="Texture" id=10]
+[ext_resource path="res://Assets/anmInimigo/inimigoanim9.png" type="Texture" id=11]
+[ext_resource path="res://Assets/anmInimigo/Morte.png" type="Texture" id=12]
+[ext_resource path="res://Scripts/Inimigo.gd" type="Script" id=13]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 12 ) ],
+"loop": true,
+"name": "Morte",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 2 ), ExtResource( 6 ), ExtResource( 10 ), ExtResource( 1 ), ExtResource( 7 ), ExtResource( 5 ), ExtResource( 11 ), ExtResource( 3 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "Walk",
+"speed": 5.0
+} ]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 72.1734
+
+[node name="Inimigo" type="KinematicBody2D"]
+script = ExtResource( 13 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 0.284375, 0.328125 )
+frames = SubResource( 1 )
+animation = "Walk"
+frame = 3
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2( 0.846, 0.774 )
+shape = SubResource( 2 )
